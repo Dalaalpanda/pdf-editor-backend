@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS  # 🟢 CORS Fix ke liye import
 import fitz  # PyMuPDF
 import os
@@ -21,9 +21,17 @@ COORDINATES = {
     "pan": [(450, 50)]  # Page 3 (Optional)
 }
 
+# ✅ Root Route (Fixes "Not Found" Error)
+@app.route("/")
+def home():
+    return "PDF Editor Backend is Running!", 200
+
 @app.route("/process-pdf", methods=["POST"])
 def process_pdf():
     try:
+        if "pdf" not in request.files:
+            return jsonify({"error": "PDF file is missing"}), 400
+
         # 📌 Upload Files
         pdf_file = request.files["pdf"]
         images = {
@@ -72,7 +80,7 @@ def process_pdf():
         return send_file(output_pdf, as_attachment=True)
 
     except Exception as e:
-        return {"error": str(e)}, 500  # 🟢 Better Error Response
+        return jsonify({"error": str(e)}), 500  # 🟢 Better Error Response
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000, debug=True)  # ✅ Port Fix for Render
