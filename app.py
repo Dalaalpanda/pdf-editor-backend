@@ -35,10 +35,10 @@ def process_pdf():
         # 📌 Upload Files
         pdf_file = request.files["pdf"]
         images = {
-            "photo": request.files["photo"],
-            "signature": request.files["signature"],
-            "aadhar_front": request.files["aadhar_front"],
-            "aadhar_back": request.files["aadhar_back"],
+            "photo": request.files.get("photo"),
+            "signature": request.files.get("signature"),
+            "aadhar_front": request.files.get("aadhar_front"),
+            "aadhar_back": request.files.get("aadhar_back"),
             "pan": request.files.get("pan")
         }
 
@@ -56,14 +56,20 @@ def process_pdf():
         # 📌 Process PDF
         doc = fitz.open(pdf_path)
 
+        # 🟢 Ensure PDF has at least 2 Pages
+        if len(doc) < 2:
+            return jsonify({"error": "PDF must have at least 2 pages"}), 400
+
         # 🟢 Page 1 - Place Images
         for idx, img_type in enumerate(["photo", "photo", "signature", "signature"]):
-            x, y = COORDINATES[img_type][idx]
-            doc[0].insert_image((x, y, x + 100, y + 100), filename=image_paths[img_type])
+            if img_type in image_paths:
+                x, y = COORDINATES[img_type][idx]
+                doc[0].insert_image((x, y, x + 100, y + 100), filename=image_paths[img_type])
 
         # 🟢 Page 2 - Place Signature
-        x, y = COORDINATES["signature"][2]
-        doc[1].insert_image((x, y, x + 100, y + 50), filename=image_paths["signature"])
+        if "signature" in image_paths:
+            x, y = COORDINATES["signature"][2]
+            doc[1].insert_image((x, y, x + 100, y + 50), filename=image_paths["signature"])
 
         # 🟢 Page 3 - Add & Place Images
         page3 = doc.new_page()
