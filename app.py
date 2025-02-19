@@ -34,6 +34,10 @@ def process_pdf():
 
         # 📌 Upload Files
         pdf_file = request.files["pdf"]
+        pdf_filename = secure_filename(pdf_file.filename)
+        pdf_path = os.path.join(UPLOAD_FOLDER, pdf_filename)
+        pdf_file.save(pdf_path)
+
         images = {
             "photo": request.files.get("photo"),
             "signature": request.files.get("signature"),
@@ -41,9 +45,6 @@ def process_pdf():
             "aadhar_back": request.files.get("aadhar_back"),
             "pan": request.files.get("pan")
         }
-
-        pdf_path = os.path.join(UPLOAD_FOLDER, secure_filename(pdf_file.filename))
-        pdf_file.save(pdf_path)
 
         # 📌 Save Images
         image_paths = {}
@@ -83,7 +84,8 @@ def process_pdf():
         doc.save(output_pdf)
         doc.close()
 
-        return send_file(output_pdf, as_attachment=True)
+        # 🟢 Ensure File is Properly Closed Before Sending
+        return send_file(output_pdf, as_attachment=True, mimetype="application/pdf")
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500  # 🟢 Better Error Response
