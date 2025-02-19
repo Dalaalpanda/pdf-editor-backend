@@ -1,9 +1,12 @@
-from flask import Flask, request, send_file, render_template
+from flask import Flask, request, send_file
+from flask_cors import CORS  # 🟢 CORS Fix ke liye import
 import fitz  # PyMuPDF
 import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+CORS(app)  # 🟢 Enable CORS so that frontend can access the backend
+
 UPLOAD_FOLDER = "uploads"
 PROCESSED_FOLDER = "processed"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -17,10 +20,6 @@ COORDINATES = {
     "aadhar_back": [(250, 50)],  # Page 3
     "pan": [(450, 50)]  # Page 3 (Optional)
 }
-
-@app.route("/")
-def index():
-    return render_template("index.html")
 
 @app.route("/process-pdf", methods=["POST"])
 def process_pdf():
@@ -73,7 +72,7 @@ def process_pdf():
         return send_file(output_pdf, as_attachment=True)
 
     except Exception as e:
-        return {"error": str(e)}
+        return {"error": str(e)}, 500  # 🟢 Better Error Response
 
 if __name__ == "__main__":
     app.run(debug=True)
