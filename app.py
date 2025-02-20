@@ -31,8 +31,11 @@ def process_pdf():
         images = {
             "photo": request.files.get("photo"),
             "signature": request.files.get("signature"),
+            "thumb": request.files.get("thumb"),
             "aadhar_front": request.files.get("aadhar_front"),
             "aadhar_back": request.files.get("aadhar_back"),
+            "paadhar_front": request.files.get("paadhar_front"),
+            "paadhar_back": request.files.get("paadhar_back"),
             "pan": request.files.get("pan")
         }
 
@@ -85,6 +88,12 @@ def process_pdf():
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
+            if "thumb" in image_paths:
+                X1, Y1 = 326.5, 746.4
+                WIDTH, HEIGHT = 165, 35
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
+
         # 🟢 Add Page 3 if Needed
         if len(doc) < 3:
             doc.new_page()
@@ -102,6 +111,18 @@ def process_pdf():
                 WIDTH, HEIGHT = 205.5, 127.7
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["aadhar_back"])
+
+            if "paadhar_front" in image_paths:
+                X1, Y1 = 53, 43.5
+                WIDTH, HEIGHT = 209, 129
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["pan"])
+
+            if "paadhar_back" in image_paths:
+                X1, Y1 = 280.2, 43.5
+                WIDTH, HEIGHT = 209, 129
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["pan"])
 
             if "pan" in image_paths:
                 X1, Y1 = 175.6, 211.1
