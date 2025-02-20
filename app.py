@@ -65,6 +65,18 @@ def process_pdf():
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
+            if "photo" in image_paths:
+                X1, Y1 = 467.3, 101.7  # Starting Position
+                WIDTH, HEIGHT = 84.5, 94  # Image Size
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT  # Calculate Ending Position
+                doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["photo"])
+
+            if "signature" in image_paths:
+                X1, Y1 = 393, 203.5  # Starting Position
+                WIDTH, HEIGHT = 144, 33.2  # Image Size
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
+
         # 🟢 Page 2 - Place Signature
         if len(doc) > 1:
             if "signature" in image_paths:
