@@ -54,8 +54,8 @@ def process_pdf():
         # 🟢 Page 1 - Place Images using X, Y, Width, Height
         if len(doc) > 0:
             if "photo" in image_paths:
-                X1, Y1 = 44, 422  # Starting Position
-                WIDTH, HEIGHT = 350, 385  # Image Size
+                X1, Y1 = 14, 152  # Starting Position
+                WIDTH, HEIGHT = 154, 104  # Image Size
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT  # Calculate Ending Position
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["photo"])
 
