@@ -68,8 +68,8 @@ def process_pdf():
         # 🟢 Page 2 - Place Signature
         if len(doc) > 1:
             if "signature" in image_paths:
-                X1, Y1 = 15, 150
-                WIDTH, HEIGHT = 710, 170
+                X1, Y1 = 326.5, 746.4
+                WIDTH, HEIGHT = 169.8, 38.2
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
