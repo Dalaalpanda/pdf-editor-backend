@@ -60,8 +60,8 @@ def process_pdf():
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["photo"])
 
             if "signature" in image_paths:
-                X1, Y1 = 150, 640  # Starting Position
-                WIDTH, HEIGHT = 710, 170  # Image Size
+                X1, Y1 = 47.1, 159.9  # Starting Position
+                WIDTH, HEIGHT = 132.2, 32  # Image Size
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
