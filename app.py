@@ -68,6 +68,12 @@ def process_pdf():
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
+            if "thumb" in image_paths:
+                X1, Y1 = 47.1, 159.9  # Starting Position
+                WIDTH, HEIGHT = 132.2, 32  # Image Size
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["thumb"])
+
             if "photo" in image_paths:
                 X1, Y1 = 467.3, 101.7  # Starting Position
                 WIDTH, HEIGHT = 84.5, 94  # Image Size
@@ -79,6 +85,12 @@ def process_pdf():
                 WIDTH, HEIGHT = 144, 33.2  # Image Size
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
+
+            if "thumb" in image_paths:
+                X1, Y1 = 47.1, 159.9  # Starting Position
+                WIDTH, HEIGHT = 132.2, 32  # Image Size
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["thumb"])
 
         # 🟢 Page 2 - Place Signature
         if len(doc) > 1:
@@ -92,7 +104,7 @@ def process_pdf():
                 X1, Y1 = 326.5, 746.4
                 WIDTH, HEIGHT = 165, 35
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
-                doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
+                doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["thumb"])
 
         # 🟢 Add Page 3 if Needed
         if len(doc) < 3:
