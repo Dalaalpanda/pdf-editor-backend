@@ -69,8 +69,8 @@ def process_pdf():
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
             if "thumb" in image_paths:
-                X1, Y1 = 68.1, 156.7  # Starting Position
-                WIDTH, HEIGHT = 55, 33  # Image Size
+                X1, Y1 = 65, 151.5  # Starting Position
+                WIDTH, HEIGHT = 75, 52.5  # Image Size
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["thumb"])
 
@@ -88,7 +88,7 @@ def process_pdf():
 
             if "thumb" in image_paths:
                 X1, Y1 = 429.3, 203.6  # Starting Position
-                WIDTH, HEIGHT = 55, 33  # Image Size
+                WIDTH, HEIGHT = 75, 52.5  # Image Size
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["thumb"])
 
@@ -102,7 +102,7 @@ def process_pdf():
 
             if "thumb" in image_paths:
                 X1, Y1 = 350.5, 745.1
-                WIDTH, HEIGHT = 55, 33
+                WIDTH, HEIGHT = 75, 52.5
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["thumb"])
 
