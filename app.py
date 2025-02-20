@@ -51,17 +51,27 @@ def process_pdf():
         if len(doc) < 2:
             return jsonify({"error": "PDF must have at least 2 pages"}), 400
 
-        # 🟢 Page 1 - Place Images
+        # 🟢 Page 1 - Place Images using X, Y, Width, Height
         if len(doc) > 0:
             if "photo" in image_paths:
-                doc[0].insert_image((100, 150, 200, 250), filename=image_paths["photo"])
+                X1, Y1 = 44, 422  # Starting Position
+                WIDTH, HEIGHT = 350, 385  # Image Size
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT  # Calculate Ending Position
+                doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["photo"])
+
             if "signature" in image_paths:
-                doc[0].insert_image((100, 250, 200, 290), filename=image_paths["signature"])
+                X1, Y1 = 150, 640  # Starting Position
+                WIDTH, HEIGHT = 710, 170  # Image Size
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[0].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
         # 🟢 Page 2 - Place Signature
         if len(doc) > 1:
             if "signature" in image_paths:
-                doc[1].insert_image((100, 300, 200, 340), filename=image_paths["signature"])
+                X1, Y1 = 1345, 3120
+                WIDTH, HEIGHT = 710, 170
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[1].insert_image((X1, Y1, X2, Y2), filename=image_paths["signature"])
 
         # 🟢 Add Page 3 if Needed
         if len(doc) < 3:
@@ -70,11 +80,22 @@ def process_pdf():
         # 🟢 Page 3 - Add & Place Images
         if len(doc) > 2:
             if "aadhar_front" in image_paths:
-                doc[2].insert_image((50, 50, 200, 200), filename=image_paths["aadhar_front"])
+                X1, Y1 = 80, 90
+                WIDTH, HEIGHT = 520, 320
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["aadhar_front"])
+
             if "aadhar_back" in image_paths:
-                doc[2].insert_image((250, 50, 400, 200), filename=image_paths["aadhar_back"])
+                X1, Y1 = 660, 90
+                WIDTH, HEIGHT = 520, 320
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["aadhar_back"])
+
             if "pan" in image_paths:
-                doc[2].insert_image((450, 50, 600, 200), filename=image_paths["pan"])
+                X1, Y1 = 370, 500
+                WIDTH, HEIGHT = 520, 320
+                X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["pan"])
 
         # 📌 Save Processed PDF
         output_pdf = os.path.join(PROCESSED_FOLDER, "edited.pdf")
