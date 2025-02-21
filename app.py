@@ -128,13 +128,13 @@ def process_pdf():
                 X1, Y1 = 53, 43.5
                 WIDTH, HEIGHT = 209, 129
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
-                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["pan"])
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["paadhar_front"])
 
             if "paadhar_back" in image_paths:
                 X1, Y1 = 280.2, 43.5
                 WIDTH, HEIGHT = 209, 129
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
-                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["pan"])
+                doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["paadhar_back"])
 
             if "pan" in image_paths:
                 X1, Y1 = 175.6, 211.1
