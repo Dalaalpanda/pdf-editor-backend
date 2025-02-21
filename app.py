@@ -113,32 +113,32 @@ def process_pdf():
         # 🟢 Page 3 - Add & Place Images
         if len(doc) > 2:
             if "aadhar_front" in image_paths:
-                X1, Y1 = 53, 43.5
-                WIDTH, HEIGHT = 205.5, 127.7
+                X1, Y1 = 31.3, 37.2
+                WIDTH, HEIGHT = 256.4, 153.3
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["aadhar_front"])
 
             if "aadhar_back" in image_paths:
-                X1, Y1 = 280.2, 43.5
-                WIDTH, HEIGHT = 205.5, 127.7
+                X1, Y1 = 305.4, 37.2
+                WIDTH, HEIGHT = 256.4, 153.3
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["aadhar_back"])
 
             if "paadhar_front" in image_paths:
-                X1, Y1 = 53, 43.5
-                WIDTH, HEIGHT = 209, 129
+                X1, Y1 = 31.3, 226.8
+                WIDTH, HEIGHT = 256.4, 153.3
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["paadhar_front"])
 
             if "paadhar_back" in image_paths:
-                X1, Y1 = 280.2, 43.5
-                WIDTH, HEIGHT = 209, 129
+                X1, Y1 = 305.4, 226.8
+                WIDTH, HEIGHT = 256.4, 153.3
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["paadhar_back"])
 
             if "pan" in image_paths:
-                X1, Y1 = 175.6, 211.1
-                WIDTH, HEIGHT = 205.5, 127.7
+                X1, Y1 = 168.3, 245
+                WIDTH, HEIGHT = 256.4, 153.3
                 X2, Y2 = X1 + WIDTH, Y1 + HEIGHT
                 doc[2].insert_image((X1, Y1, X2, Y2), filename=image_paths["pan"])
 
